@@ -7,7 +7,20 @@ class ContentRating extends Component {
     super();
     this.state = {
         likes: 0,
-        dislikes: 0
+        dislikes: 0,
+        handleLike: () => {
+            this.setState((prevState) => ({
+                likes: prevState.likes+1,
+                totalRating: prevState.totalRating+1
+            }));
+        },
+        handleDislike: () => {
+            this.setState((prevState)=>({
+                dislikes: prevState.dislikes+1,
+                totalRating: prevState.totalRating+1
+            }));
+        },
+        totalRating: 0
     };
   }
 
@@ -20,8 +33,9 @@ class ContentRating extends Component {
 Alors, outil de liberté ou prison dorée ? Chacun y trouve son compte... ou son cauchemar. Et vous, du quel du camp êtes-vous ?
         </p>
         <div className='rating_buttons'>
-            <button className='like_button'>Like ({this.state.likes})</button>
-            <button className='dislike_button'>Dislike ({this.state.dislikes})</button>
+            <button className='like_button' onClick={this.state.handleLike}>Like ({this.state.likes})</button>
+            <button className='dislike_button' onClick={this.state.handleDislike}>Dislike ({this.state.dislikes})</button>
+            <br /><br /><strong>TotalRating : {this.state.totalRating}</strong>
         </div>
      </div>
      </>
